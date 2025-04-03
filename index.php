@@ -46,7 +46,7 @@
             background-image: url('image/capiPerfil.jpeg');
             background-size: cover;
             background-position: center;
-            margin-top: 20px;
+            margin-top: 30px;
             z-index: 1;
         }
     </style>
