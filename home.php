@@ -22,7 +22,6 @@
             background-color: #384e66;
         }
         .container {
-            /* Nuevos estilos para el contenedor */
             background-color: rgba(31, 41, 55, 0.85);
             border-radius: 15px;
             width: 380px;
@@ -33,7 +32,6 @@
             padding-bottom: 20px;
             margin-top: 20px;
             margin-bottom: 20px;
-
             animation: fadeIn 1s ease, pulse 2s infinite alternate;
             transition: transform 0.3s ease;
         }
@@ -89,6 +87,23 @@
         .profile-icon:hover {
             transform: scale(1.1);
         }
+
+        .profile-photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #1F2937;
+            background-image: url(image/capiPerfil.jpeg);
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+    
         @keyframes pulse {
             from {
                 transform: scale(1);
@@ -110,8 +125,8 @@
 <body>
     <div class="container">
         <h1 class="animate__animated animate__heartBeat">Astro Delover</h1>
-        <div class="profile-icon animate__animated animate__fadeInDown"></div>
-        <p>User Info #Astro (http://t.me/astrozdev) - 8150119370</p>
+        <div class="profile-photo animate__animated animate__fadeInDown"></div>
+        <p style="margin-top: 140px;">User Info #Astro (http://t.me/astrozdev) - 8150119370</p>
         <p>{•} Name: Daniel</p>
         <p>{•} Year: ?</p>
         <p>{•} Refes: @AstrozRef</p>
