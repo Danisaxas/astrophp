@@ -1,69 +1,44 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Primera Página PHP</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-        div {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <h1>¡Hola, Mundo!</h1>
-        <p>Esta es una página web básica creada con PHP.</p>
-        <?php
-            // Este es un comentario de una sola línea en PHP
-            /*
-            Este es un comentario
-            de múltiples líneas
-            en PHP
-            */
+<?php
+// index.php - Controlador Principal
 
-            // Imprimimos la fecha actual
-            echo "<p>La fecha de hoy es: " . date("d/m/Y") . "</p>";
+// Define la ruta base de la aplicación
+define('BASE_URL', '/'); // La ruta base es la raíz del dominio
 
-            // Definimos una variable y la imprimimos
-            $nombre = "Juan";
-            echo "<p>Bienvenido, " . $nombre . "!</p>";
+// Incluye el archivo de configuración (opcional)
+// include_once 'config.php';
 
-            // Creamos un array y lo recorremos
-            $colores = array("rojo", "verde", "azul");
-            echo "<p>Mis colores favoritos son:</p>";
-            echo "<ul>";
-            foreach ($colores as $color) {
-                echo "<li>" . $color . "</li>";
-            }
-            echo "</ul>";
+// Función para obtener la ruta de la solicitud
+function get_request_uri() {
+    $uri = $_SERVER['REQUEST_URI'];
+    // Elimina la ruta base
+    if (strpos($uri, BASE_URL) === 0) {
+        $uri = substr($uri, strlen(BASE_URL));
+    }
+    // Elimina la cadena de consulta (parámetros después del ?)
+    if (($pos = strpos($uri, '?')) !== false) {
+        $uri = substr($uri, 0, $pos);
+    }
+    // Elimina la barra diagonal final
+    return rtrim($uri, '/');
+}
 
-            // Creamos una función y la llamamos
-            function saludar($nombre) {
-                echo "<p>¡Hola, " . $nombre . "!</p>";
-            }
+// Obtiene la ruta de la solicitud
+$route = get_request_uri();
 
-            saludar("María");
-            saludar("Pedro");
-        ?>
-    </div>
-</body>
-</html>
+// Define las rutas y sus archivos correspondientes
+$routes = [
+    '' => 'home.php',       // Página de inicio
+    'home' => 'home.php',
+    'acerca' => 'acerca.php', // Ejemplo de otra página
+    'contacto' => 'contacto.php',
+    '404' => '404.php' // Página para manejar errores 404
+];
+
+// Incluye el archivo de la ruta o muestra un error 404
+if (array_key_exists($route, $routes)) {
+    include_once $routes[$route];
+} else {
+    //Si la ruta no existe, muestra la página 404
+    include_once $routes['404'];
+}
+?>
