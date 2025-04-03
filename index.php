@@ -35,7 +35,7 @@
         .contenedor-cuadrado span {
             font-family: 'Minotbug', sans-serif;
             z-index: 2; /* Asegura que el texto esté por encima de la imagen */
-            margin-top: 180px; /* Ajusta la posición vertical del texto */
+            margin-top: 160px; /* Ajustado la posición vertical del texto */
         }
 
         .profile-photo {
@@ -43,18 +43,56 @@
             height: 110px;
             border-radius: 50%;
             border: 4px solid #121212;
-            background-image: url('image/capiPerfil.jpeg');
+            background-image: url(https://img.icons8.com/?size=100&id=53381&format=png&color=000000);
             background-size: cover;
             background-position: center;
             margin-top: 30px;
             z-index: 1;
         }
+
+        .contenedor-cuadrado .buttons-main {
+            display: flex;
+            justify-content: center;
+            margin-top: 280px;
+        }
+
+        .contenedor-cuadrado .buttons-main button {
+            background-color: #1E3A8A;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px 20px 20px 20px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0.7;
+            min-width: 48px;
+            padding: 12px;
+            margin: 0 5px;
+        }
+
+        .contenedor-cuadrado .buttons-main button:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .contenedor-cuadrado .buttons-main button:active {
+            transform: scale(0.95);
+        }
+
     </style>
 </head>
 <body>
     <div class="contenedor-cuadrado">
         <div class="profile-photo"></div>
         <span>Astrozdev</span>
+        <div class="buttons-main">
+            <button>Info</button>
+            <button>Habilidades</button>
+            <button>Teams</button>
+        </div>
     </div>
 </body>
 </html>
