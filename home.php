@@ -14,21 +14,26 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #243B55; /* Nuevo color de fondo: Azul oscuro */
-            color: #fff; /* Cambiamos el color del texto a blanco para mejor contraste */
+            background-color: #243B55;
+            color: #fff;
             transition: background-color 0.5s ease;
         }
         body:hover {
-            background-color: #384e66; /* Cambio de color al pasar el cursor, más claro */
+            background-color: #384e66;
         }
         .container {
-            text-align: left;
-            padding: 25px;
-            border-radius: 12px;
-            background-color: #fff;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-            max-width: 450px;
-            width: 95%;
+            /* Nuevos estilos para el contenedor */
+            background-color: rgba(31, 41, 55, 0.85);
+            border-radius: 15px;
+            width: 380px;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding-bottom: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
             animation: fadeIn 1s ease, pulse 2s infinite alternate;
             transition: transform 0.3s ease;
         }
@@ -38,7 +43,7 @@
         h1 {
             font-size: 2.8em;
             margin-bottom: 15px;
-            color: #FF6F61; /* Cambiado a un color акценто */
+            color: #FF6F61;
             text-align: center;
             letter-spacing: -0.02em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
@@ -50,7 +55,7 @@
             color: #fff;
         }
         a {
-            color: #FFCB77; /* Cambiado a un color акценто */
+            color: #FFCB77;
             text-decoration: none;
             font-size: 1.2em;
             font-weight: 600;
@@ -59,11 +64,11 @@
             padding: 8px 16px;
             border-radius: 25px;
             background-color: transparent;
-            border: 2px solid #FFCB77; /* Cambiado a un color акценто */
+            border: 2px solid #FFCB77;
         }
         a:hover {
             color: #fff;
-            background-color: #FFCB77; /* акценто color */
+            background-color: #FFCB77;
             transform: scale(1.05);
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
