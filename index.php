@@ -11,10 +11,12 @@ function generarContenedorSemiRedondo($texto, $ancho, $alto, $color, $colorTexto
         text-align: center;
         line-height: <?php echo $alto; ?>px;
         font-family: sans-serif;
-        font-size: 24px;  /* Aumenté el tamaño de la fuente para el ejemplo */
+        font-size: 28px;
         color: <?php echo $colorTexto; ?>;
-        margin: 0 auto; /* Centrado horizontal */
-        display: block; /* Necesario para que margin: auto funcione */
+        margin: 0 auto;
+        display: block;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     ">
         <?php echo $texto; ?>
     </div>
@@ -26,11 +28,12 @@ function generarContenedorSemiRedondo($texto, $ancho, $alto, $color, $colorTexto
 
 // Ejemplo de uso:
 $nombre = "@Astrozdev";
-$anchoContenedor = 300; /* Aumenté el ancho para el ejemplo */
-$altoContenedor = 150; /* Aumenté el alto para el ejemplo */
-$colorFondo = "#e0e0e0";  // Un gris más claro
-$colorTextoContenedor = "#333"; // Un gris más oscuro
-echo "<div style='display: flex; justify-content: center; align-items: center; min-height: 100vh;'>";
+$anchoContenedor = 320;
+$altoContenedor = 160;
+$colorFondo = "#f8f8f8";
+$colorTextoContenedor = "#222";
+
+echo "<div style='display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #fff;'>";
 $contenedor = generarContenedorSemiRedondo($nombre, $anchoContenedor, $altoContenedor, $colorFondo, $colorTextoContenedor);
 echo $contenedor;
 echo "</div>";
