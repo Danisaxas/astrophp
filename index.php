@@ -1,40 +1,62 @@
-<?php
-function generarContenedorSemiRedondo($texto, $ancho, $alto, $color, $colorTexto) {
-    // Inicia la salida del buffer para que podamos capturar el HTML generado.
-    ob_start();
-    ?>
-    <div style="
-        background-color: <?php echo $color; ?>;
-        border-radius: 50% 50% 0 0;
-        width: <?php echo $ancho; ?>px;
-        height: <?php echo $alto; ?>px;
-        text-align: center;
-        line-height: <?php echo $alto; ?>px;
-        font-family: sans-serif;
-        font-size: 28px;
-        color: <?php echo $colorTexto; ?>;
-        margin: 0 auto;
-        display: block;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    ">
-        <?php echo $texto; ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenedor Cuadrado Redondo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Edo&family=Minotbug&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: rgb(36, 59, 85); /* Color de fondo para la página */
+        }
+
+        .contenedor-cuadrado {
+            width: 379.99px;
+            height: 440.12px;
+            background-color: rgba(31, 41, 55, 0.85);
+            border-radius: 15px;
+            position: relative; /* Añadido para posicionamiento absoluto del texto */
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .contenedor-cuadrado span {
+            position: absolute;
+            left: 130.0px;
+            top: 250.04px;
+            font-family: 'Minotbug', sans-serif;
+            z-index: 2; /* Asegura que el texto esté por encima de la imagen */
+        }
+
+        .profile-photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #121212;
+            background-image: url('image/capiPerfil.jpeg');
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor-cuadrado">
+        <div class="profile-photo"></div>
+        <span>Astrozdev</span>
     </div>
-    <?php
-    // Obtiene el contenido del buffer y lo limpia.
-    $html = ob_get_clean();
-    return $html;
-}
-
-// Ejemplo de uso:
-$nombre = "@Astrozdev";
-$anchoContenedor = 320;
-$altoContenedor = 160;
-$colorFondo = "#f8f8f8";
-$colorTextoContenedor = "#222";
-
-echo "<div style='display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #fff;'>";
-$contenedor = generarContenedorSemiRedondo($nombre, $anchoContenedor, $altoContenedor, $colorFondo, $colorTextoContenedor);
-echo $contenedor;
-echo "</div>";
-?>
+</body>
+</html>
