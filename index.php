@@ -27,14 +27,15 @@
             overflow: hidden;
             text-align: center;
             padding-bottom: 20px;
+            display: flex; /* Añadido para centrar contenido */
+            flex-direction: column;
+            align-items: center;
         }
 
         .contenedor-cuadrado span {
-            position: absolute;
-            left: 130.0px;
-            top: 250.04px;
             font-family: 'Minotbug', sans-serif;
             z-index: 2; /* Asegura que el texto esté por encima de la imagen */
+            margin-top: 180px; /* Ajusta la posición vertical del texto */
         }
 
         .profile-photo {
@@ -45,10 +46,7 @@
             background-image: url('image/capiPerfil.jpeg');
             background-size: cover;
             background-position: center;
-            position: absolute;
-            top: 90px;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-top: 20px;
             z-index: 1;
         }
     </style>
