@@ -17,8 +17,12 @@
             color: #333;
         }
         .container {
-            text-align: center;
+            text-align: left;
             padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            max-width: 400px;
         }
         h1 {
             font-size: 2.5em;
@@ -27,8 +31,8 @@
         }
         p {
             font-size: 1.1em;
-            margin-bottom: 30px;
-            color: #555;
+            margin-bottom: 10px;
+
         }
         a {
             color: #007BFF;
@@ -42,9 +46,16 @@
 </head>
 <body>
     <div class="container">
-        <h1>Bienvenido</h1>
-        <p>Esta es una página de inicio minimalista.</p>
-        <a href="acerca">Ir a la página Acerca de</a>
+        <p>User Info #Astro (http://t.me/astrozdev) - 8150119370</p>
+        <p>{•} Name: Daniel</p>
+        <p>{•} Year: ?</p>
+        <p>{•} Refes: @AstrozRef</p>
+        <p>{•} Country: Venezuela</p>
+        <p>{•} Team: None</p>
+        <p>{•} Note: I like to program, the programming languages ​​that I use are several among them</p>
+        <p>{•} Python</p>
+        <p>{•} PHP</p>
+        <p>{•} Former seller of: @alphachecker1bot</p>
     </div>
 </body>
 </html>
