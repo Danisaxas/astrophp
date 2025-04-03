@@ -43,10 +43,10 @@
             color: #0056b3;
         }
         .profile-icon {
-            width: 100px; /* Ajusta el tamaño del icono según sea necesario */
+            width: 100px;
             height: auto;
             margin-bottom: 10px;
-            display: block; /* Para centrar el icono */
+            display: block;
             margin-left: auto;
             margin-right: auto;
         }
@@ -54,7 +54,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Astro Delovery</h1>
+        <h1>Astro Delover</h1>
         <img src="https://img.icons8.com/?size=100&id=37562&format=png&color=000000" alt="Icono de perfil" class="profile-icon">
         <p>User Info #Astro (http://t.me/astrozdev) - 8150119370</p>
         <p>{•} Name: Daniel</p>
