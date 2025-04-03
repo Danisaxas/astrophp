@@ -44,18 +44,21 @@
         }
         .profile-icon {
             width: 100px;
-            height: auto;
+            height: 100px;
             margin-bottom: 10px;
             display: block;
             margin-left: auto;
             margin-right: auto;
+            background-image: url('https://img.icons8.com/?size=100&id=37562&format=png&color=000000');
+            background-size: cover;
+            background-repeat: no-repeat;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Astro Delover</h1>
-        <img src="https://img.icons8.com/?size=100&id=37562&format=png&color=000000" alt="Icono de perfil" class="profile-icon">
+        <div class="profile-icon"></div>
         <p>User Info #Astro (http://t.me/astrozdev) - 8150119370</p>
         <p>{•} Name: Daniel</p>
         <p>{•} Year: ?</p>
