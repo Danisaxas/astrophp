@@ -49,7 +49,8 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-            background-image: url('https://img.icons8.com/?size=100&id=37562&format=png&color=000000');
+            /* SVG inline como background */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5a45 45 0 1 0 0 90 45 45 0 0 0 0-90z' fill='%23000'/%3E%3Cpath d='M73 73c-2.3-7-6-13.5-11-18-4.5-4-10-7-16-7s-11.5 3-16 7c-5 4.5-8.7 11-11 18a39 39 0 0 0 74 0z' fill='%23fff'/%3E%3Ccircle cx='50' cy='35' r='10' fill='%23fff'/%3E%3C/svg%3E");
             background-size: cover;
             background-repeat: no-repeat;
         }
