@@ -9,10 +9,6 @@
 </head>
 <body>
     <div class="container card">
-        <?php
-            // Incluye el contenido de la tarjeta desde card.php
-            include 'card.php';
-        ?>
     </div>
     <script src="scripts.js"></script>
 </body>
