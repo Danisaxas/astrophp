@@ -14,12 +14,12 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f3e5f5;
-            color: #311b92;
+            background-color: #243B55; /* Nuevo color de fondo: Azul oscuro */
+            color: #fff; /* Cambiamos el color del texto a blanco para mejor contraste */
             transition: background-color 0.5s ease;
         }
         body:hover {
-            background-color: #ede7f6;
+            background-color: #384e66; /* Cambio de color al pasar el cursor, más claro */
         }
         .container {
             text-align: left;
@@ -38,7 +38,7 @@
         h1 {
             font-size: 2.8em;
             margin-bottom: 15px;
-            color: #9c27b0;
+            color: #FF6F61; /* Cambiado a un color акценто */
             text-align: center;
             letter-spacing: -0.02em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
@@ -47,10 +47,10 @@
             font-size: 1.15em;
             margin-bottom: 12px;
             line-height: 1.7;
-            color: #5e35b1;
+            color: #fff;
         }
         a {
-            color: #ff4081;
+            color: #FFCB77; /* Cambiado a un color акценто */
             text-decoration: none;
             font-size: 1.2em;
             font-weight: 600;
@@ -59,11 +59,11 @@
             padding: 8px 16px;
             border-radius: 25px;
             background-color: transparent;
-            border: 2px solid #ff4081;
+            border: 2px solid #FFCB77; /* Cambiado a un color акценто */
         }
         a:hover {
             color: #fff;
-            background-color: #ff4081;
+            background-color: #FFCB77; /* акценто color */
             transform: scale(1.05);
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
