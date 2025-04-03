@@ -26,13 +26,13 @@
         }
         h1 {
             font-size: 2.5em;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             color: #4CAF50;
+            text-align: center;
         }
         p {
             font-size: 1.1em;
             margin-bottom: 10px;
-
         }
         a {
             color: #007BFF;
@@ -42,10 +42,20 @@
         a:hover {
             color: #0056b3;
         }
+        .profile-icon {
+            width: 100px; /* Ajusta el tamaño del icono según sea necesario */
+            height: auto;
+            margin-bottom: 10px;
+            display: block; /* Para centrar el icono */
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <h1>Astro Delovery</h1>
+        <img src="https://img.icons8.com/?size=100&id=37562&format=png&color=000000" alt="Icono de perfil" class="profile-icon">
         <p>User Info #Astro (http://t.me/astrozdev) - 8150119370</p>
         <p>{•} Name: Daniel</p>
         <p>{•} Year: ?</p>
