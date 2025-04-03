@@ -22,7 +22,6 @@
             background-color: #384e66;
         }
         .container {
-            /* Estilos originales eliminados */
             margin-top: 20px;
             margin-bottom: 20px;
             animation: fadeIn 1s ease, pulse 2s infinite alternate;
@@ -93,7 +92,18 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 1;
+            /* background-image: url(image/capiPerfil.jpeg);  Eliminado para usar URL externa o base64 */
             background-image: url(https://placehold.co/110x110/808080/FFFFFF?text=Profile);
+        }
+
+        .cover-photo {
+            height: 180px;
+            /* background-image: url(image/portada.jpg); Eliminado para usar URL externa o base64 */
+            background-image: url(https://placehold.co/373x180/808080/FFFFFF?text=Cover+Photo);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-radius: 15px 15px 0 0;
         }
 
         @keyframes pulse {
@@ -125,26 +135,127 @@
             padding-bottom: 20px;
         }
 
-        .info h2, .info p {
-            font-family: 'Arial', sans-serif;
-            color: #FFF;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        .info {
+            font-family: 'Georgia', serif;
+            color: #EDEDED;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            margin: 10px;
+            position: relative;
         }
 
         .info h2 {
-            position: absolute;
-            width: 313.81px;
-            height: 32.04px;
-            top: 0;
-            left: 0;
             font-size: 28px;
             margin-bottom: 10px;
+        }
+
+        .info p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .buttons-main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .buttons-main button {
+            background-color: #1E3A8A;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px 20px 20px 20px;
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0.7;
+            min-width: 48px;
+            padding: 12px;
+        }
+
+        .buttons-main button:hover {
+            background-color: #1E40AF;
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .buttons-main button i {
+            margin-right: 8px;
+        }
+
+        .skills, .team {
+            font-size: 14px;
+            color: #2563EB;
+            margin-bottom: 10px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0E1319;
+            transition: background-color 0.3s;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+            z-index: 2;
+        }
+
+        .back-button:hover {
+            background-color: #1E40AF;
+        }
+
+        .skills-list {
+            display: none;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .skills-list h3 {
+            color: #FFF;
+            margin-bottom: 10px;
+        }
+
+        .skills-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills-list li {
+            margin-bottom: 8px;
+            align-items: center;
+            display: flex;
+        }
+
+        .skills-list img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            vertical-align: middle;
         }
     </style>
     <script>
         function resetCard() {
             var originalHtml = `
+                <div class="cover-photo"></div>
                 <div class="info">
+                    <div class="profile-photo"></div>
                     <h2 class="h1-title">MinoTBug</h2>
                     <p>@MinoTbug</p>
                     <div class="buttons-main">
@@ -197,7 +308,9 @@
             }
         }
 
-        resetCard();
+        window.onload = function() {
+            resetCard();
+        };
     </script>
 </head>
 <body>
