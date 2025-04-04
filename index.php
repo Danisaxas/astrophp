@@ -35,11 +35,6 @@ switch ($route) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        // Si el usuario ya está logueado, redirige a la página de bienvenida
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-            header("Location: welcome.php");
-            exit;
-        }
         // Incluye el archivo de inicio de sesión
         include "login.php";
         break;
