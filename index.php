@@ -35,6 +35,11 @@ switch ($route) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+        // Si el usuario ya está logueado, redirige a la página de bienvenida
+        if (isset($_SESSION['loggedin'] === true) {
+            header("Location: welcome.php");
+            exit;
+        }
         // Incluye el archivo de inicio de sesión
         include "login.php";
         break;
@@ -42,6 +47,11 @@ switch ($route) {
         // Inicia la sesión solo si no está ya iniciada
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
+        }
+        // Si el usuario ya está logueado, redirige a la página de bienvenida
+         if (isset($_SESSION['loggedin'] === true) {
+            header("Location: welcome.php");
+            exit;
         }
         // Incluye el archivo de registro
         include "register.php";
@@ -61,7 +71,7 @@ switch ($route) {
     default:
         // Si la ruta no coincide con ninguna de las anteriores, muestra un error 404
         header("HTTP/1.0 404 Not Found");
-        echo "<h1>404 Not Found</h1>";
+        echo "<h1>404 No encontrado</h1>";
         echo "<p>La página solicitada no se ha encontrado.</p>";
         break;
 }
