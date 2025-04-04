@@ -51,6 +51,11 @@ switch ($route) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+        // Si el usuario no está logueado, redirige a index.php
+        if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+            header("Location: index.php");
+            exit;
+        }
         // Incluye el archivo de bienvenida
         include "welcome.php";
         break;
