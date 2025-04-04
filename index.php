@@ -1,98 +1,76 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contenedor Cuadrado Redondo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Edo&family=Minotbug&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: rgb(36, 59, 85); /* Color de fondo para la página */
-        }
+<?php
+/**
+ * index.php
+ *
+ * Punto de entrada de la aplicación. Maneja el enrutamiento de las solicitudes.
+ */
 
-        .contenedor-cuadrado {
-            width: 379.99px;
-            height: 440.12px;
-            background-color: rgba(31, 41, 55, 0.85);
-            border-radius: 15px;
-            position: relative; /* Añadido para posicionamiento absoluto del texto */
-            color: white;
-            font-size: 28px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            text-align: center;
-            padding-bottom: 20px;
-            display: flex; /* Añadido para centrar contenido */
-            flex-direction: column;
-            align-items: center;
-        }
+// Define la ruta base de la aplicación.
+define('BASE_URL', '/'); // Cambiar a '/' si está en la raíz
 
-        .contenedor-cuadrado span {
-            font-family: 'Minotbug', sans-serif;
-            z-index: 2; /* Asegura que el texto esté por encima de la imagen */
-            margin-top: 160px; /* Ajustado la posición vertical del texto */
-        }
+// Función para cargar controladores.
+function cargarControlador($controlador) {
+    $nombreControlador = $controlador . 'Controller';
+    $archivoControlador = 'controllers/' . $nombreControlador . '.php';
 
-        .profile-photo {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            border: 4px solid #121212;
-            background-image: url(https://img.icons8.com/?size=100&id=53381&format=png&color=000000);
-            background-size: cover;
-            background-position: center;
-            margin-top: 30px;
-            z-index: 1;
+    if (file_exists($archivoControlador)) {
+        require_once($archivoControlador);
+        if (class_exists($nombreControlador)) {
+            return new $nombreControlador();
+        } else {
+            error_log("La clase {$nombreControlador} no existe en {$archivoControlador}");
+            echo "Error: Controlador inválido (Clase no existe).";
+            return null;
         }
+    } else {
+        error_log("El archivo del controlador {$archivoControlador} no se encontró.");
+        echo "Error: Controlador no encontrado.";
+        return null;
+    }
+}
 
-        .contenedor-cuadrado .buttons-main {
-            display: flex;
-            justify-content: center;
-            margin-top: 280px;
+// Función para cargar vistas.
+function cargarVista($vista, $datos = []) {
+    if (!empty($datos)) {
+        extract($datos);
+    }
+
+    $archivoVista = 'templates/' . $vista . '.php';
+
+    if (file_exists($archivoVista)) {
+        require_once($archivoVista);
+    } else {
+        error_log("El archivo de la vista {$archivoVista} no se encontró.");
+        echo "Error: Vista no encontrada.";
+    }
+}
+
+// Obtiene la URI de la solicitud.
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = str_replace(BASE_URL, '', $uri);
+$uri = rtrim($uri, '/');
+$segmentos = explode('/', $uri);
+
+// Enrutamiento
+$ruta = isset($segmentos[0]) ? $segmentos[0] : 'inicio'; // Ruta por defecto
+
+switch ($ruta) {
+    case 'login':
+        $controlador = cargarControlador('usuario'); // Asume que tienes un UsuarioController
+        if ($controlador) {
+            $controlador->login(); // Llama al método login()
         }
-
-        .contenedor-cuadrado .buttons-main button {
-            background-color: #1E3A8A;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 20px 20px 20px 20px;
-            color: white;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            opacity: 0.7;
-            min-width: 48px;
-            padding: 12px;
-            margin: 0 5px;
+        break;
+    case 'inicio': // Ejemplo de otra ruta
+        $controlador = cargarControlador('inicio');
+        if ($controlador) {
+            $controlador->index();
         }
-
-        .contenedor-cuadrado .buttons-main button:hover {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
-        .contenedor-cuadrado .buttons-main button:active {
-            transform: scale(0.95);
-        }
-
-    </style>
-</head>
-<body>
-    <div class="contenedor-cuadrado">
-        <div class="profile-photo"></div>
-        <span>Astrozdev</span>
-        <div class="buttons-main">
-            <button>Info</button>
-            <button>Habilidades</button>
-            <button>Teams</button>
-        </div>
-    </div>
-</body>
-</html>
+        break;
+    // Agrega más rutas aquí
+    default:
+        // Manejar ruta no encontrada
+        cargarVista('errores/404'); // Puedes crear una vista para errores 404
+        break;
+}
+?>
