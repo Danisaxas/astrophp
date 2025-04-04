@@ -5,6 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+
 // Si el usuario ya está logueado, redirigir a la página de bienvenida
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     header("Location: welcome.php");
@@ -80,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             // Redirigir al usuario a la página de bienvenida
                             header("Location: welcome.php");
+                            exit; // Asegurarse de que el script se detenga después de la redirección
                         } else {
                             // La contraseña no es válida
                             $login_err = "Contraseña incorrecta.";
