@@ -4,7 +4,7 @@ require_once "config.php";
 
 // Definir variables e inicializar con valores vacíos
 $username = $correo = $password = $confirm_password = $device = "";
-$username_err = $correo_err = $password_err = $confirm_password_err = $device_err = "";
+$username_err = $correo_err = $password_err = $confirm_password_err = ""; // Eliminamos $device_err
 
 // Procesar los datos del formulario cuando se envía
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -99,16 +99,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Validar el dispositivo
-    if (empty(trim($_POST["device"]))) {
-        $device_err = "Por favor, ingrese el dispositivo.";
-    } else {
-        $device = trim($_POST["device"]);
-    }
-
+    // Obtener el dispositivo del usuario
+    $device = $_SERVER['HTTP_USER_AGENT'];
 
     // Verificar si no hay errores de entrada antes de insertar en la base de datos
-    if (empty($username_err) && empty($correo_err) && empty($password_err) && empty($confirm_password_err) && empty($device_err)) {
+    if (empty($username_err) && empty($correo_err) && empty($password_err) && empty($confirm_password_err)) { // Eliminamos la verificación de $device_err
 
         // Preparar la consulta SQL
         $sql = "INSERT INTO users (username, correo, password, dispositivo) VALUES (?, ?, ?, ?)";
@@ -177,15 +172,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>">
                 <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <label>Dispositivo</label>
-                <input type="text" name="device" class="form-control <?php echo (!empty($device_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $device; ?>">
-                <span class="invalid-feedback"><?php echo $device_err; ?></span>
+                <input type="text" name="device" class="form-control" value="<?php echo $device; ?>">
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Registrarse">
             </div>
-            <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión</a>.</p>
+            <p>¿Ya tienes una cuenta? <a href="index.php">Inicia sesión</a>.</p>
         </form>
     </div>
 </body>
