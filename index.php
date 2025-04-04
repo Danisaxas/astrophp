@@ -1,76 +1,56 @@
 <?php
-/**
- * index.php
- *
- * Punto de entrada de la aplicación. Maneja el enrutamiento de las solicitudes.
- */
+session_start();
 
-// Define la ruta base de la aplicación.
-define('BASE_URL', '/'); // Cambiar a '/' si está en la raíz
+// Incluir el archivo de configuración (donde se define la constante DB_SERVER)
+require_once "config.php";
 
-// Función para cargar controladores.
-function cargarControlador($controlador) {
-    $nombreControlador = $controlador . 'Controller';
-    $archivoControlador = 'controllers/' . $nombreControlador . '.php';
+// Define una constante para la ruta base de la aplicación
+define('BASE_URL', '/'); // Cambia esto si tu aplicación no está en el directorio raíz
 
-    if (file_exists($archivoControlador)) {
-        require_once($archivoControlador);
-        if (class_exists($nombreControlador)) {
-            return new $nombreControlador();
-        } else {
-            error_log("La clase {$nombreControlador} no existe en {$archivoControlador}");
-            echo "Error: Controlador inválido (Clase no existe).";
-            return null;
-        }
-    } else {
-        error_log("El archivo del controlador {$archivoControlador} no se encontró.");
-        echo "Error: Controlador no encontrado.";
-        return null;
-    }
+// Función para obtener la ruta actual
+function get_current_route() {
+    $uri = $_SERVER['REQUEST_URI'];
+    // Elimina la ruta base
+    $uri = str_replace(BASE_URL, '', $uri);
+    // Elimina los parámetros de la cadena de consulta
+    $uri = strtok($uri, '?');
+    // Elimina la barra diagonal final
+    $uri = rtrim($uri, '/');
+    return $uri;
 }
 
-// Función para cargar vistas.
-function cargarVista($vista, $datos = []) {
-    if (!empty($datos)) {
-        extract($datos);
-    }
+// Obtiene la ruta actual
+$route = get_current_route();
 
-    $archivoVista = 'templates/' . $vista . '.php';
-
-    if (file_exists($archivoVista)) {
-        require_once($archivoVista);
-    } else {
-        error_log("El archivo de la vista {$archivoVista} no se encontró.");
-        echo "Error: Vista no encontrada.";
-    }
-}
-
-// Obtiene la URI de la solicitud.
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$uri = str_replace(BASE_URL, '', $uri);
-$uri = rtrim($uri, '/');
-$segmentos = explode('/', $uri);
-
-// Enrutamiento
-$ruta = isset($segmentos[0]) ? $segmentos[0] : 'inicio'; // Ruta por defecto
-
-switch ($ruta) {
-    case 'login':
-        $controlador = cargarControlador('usuario'); // Asume que tienes un UsuarioController
-        if ($controlador) {
-            $controlador->login(); // Llama al método login()
+// Maneja las rutas
+switch ($route) {
+    case '':
+    case 'index':
+        // Si el usuario ya está logueado, redirige a la página de bienvenida
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+            header("Location: welcome.php");
+            exit;
         }
+        // Incluye el archivo de inicio de sesión
+        include "login.php";
         break;
-    case 'inicio': // Ejemplo de otra ruta
-        $controlador = cargarControlador('inicio');
-        if ($controlador) {
-            $controlador->index();
-        }
+    case 'register':
+        // Incluye el archivo de registro
+        include "register.php";
         break;
-    // Agrega más rutas aquí
+    case 'welcome':
+        // Incluye el archivo de bienvenida
+        include "welcome.php";
+        break;
+    case 'logout':
+        // Incluye el archivo de cierre de sesión
+        include "logout.php";
+        break;
     default:
-        // Manejar ruta no encontrada
-        cargarVista('errores/404'); // Puedes crear una vista para errores 404
+        // Si la ruta no coincide con ninguna de las anteriores, muestra un error 404
+        header("HTTP/1.0 404 Not Found");
+        echo "<h1>404 Not Found</h1>";
+        echo "<p>La página solicitada no se ha encontrado.</p>";
         break;
 }
 ?>
