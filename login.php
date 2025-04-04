@@ -5,13 +5,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-
-// Si el usuario ya está logueado, redirigir a la página de bienvenida
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header("Location: welcome.php");
-    exit;
-}
-
 // Incluir el archivo de configuración (donde se define la constante DB_SERVER)
 require_once "config.php";
 
@@ -64,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // Verificar si la contraseña coincide
                         if (password_verify($password, $hashed_password)) {
                             // La contraseña es correcta, iniciar una nueva sesión
-                            session_start();
+                            //session_start();  // No es necesario iniciarla de nuevo aquí
 
                             // Almacenar datos en variables de sesión
                             $_SESSION["loggedin"] = true;
@@ -104,7 +97,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_close($link);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
