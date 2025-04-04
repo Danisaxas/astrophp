@@ -36,7 +36,7 @@ switch ($route) {
             session_start();
         }
         // Si el usuario ya está logueado, redirige a la página de bienvenida
-        if (isset($_SESSION['loggedin'] === true) {
+        if (isset($_SESSION['loggedin']) === true) {
             header("Location: welcome.php");
             exit;
         }
@@ -49,7 +49,7 @@ switch ($route) {
             session_start();
         }
         // Si el usuario ya está logueado, redirige a la página de bienvenida
-         if (isset($_SESSION['loggedin'] === true) {
+         if (isset($_SESSION['loggedin']) === true) {
             header("Location: welcome.php");
             exit;
         }
