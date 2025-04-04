@@ -36,12 +36,20 @@ switch ($route) {
             exit;
         }
         // Incluye el archivo de inicio de sesión
-        //include "login.php"; // Esto estaba causando el problema
-        // Mostrar directamente el contenido de login.php
-        ob_start();
         include "login.php";
-        $login_content = ob_get_clean();
-        echo $login_content;
+        break;
+    case 'login':
+         // Inicia la sesión solo si no está ya iniciada
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        // Si el usuario ya está logueado, redirige a la página de bienvenida
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+            header("Location: welcome.php");
+            exit;
+        }
+        // Incluye el archivo de inicio de sesión
+        include "login.php";
         break;
     case 'register':
         // Inicia la sesión solo si no está ya iniciada
