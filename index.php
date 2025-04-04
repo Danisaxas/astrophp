@@ -36,7 +36,12 @@ switch ($route) {
             exit;
         }
         // Incluye el archivo de inicio de sesión
+        //include "login.php"; // Esto estaba causando el problema
+        // Mostrar directamente el contenido de login.php
+        ob_start();
         include "login.php";
+        $login_content = ob_get_clean();
+        echo $login_content;
         break;
     case 'register':
         // Inicia la sesión solo si no está ya iniciada
