@@ -1,5 +1,5 @@
 <?php
-session_start();
+// index.php
 
 // Incluir el archivo de configuración (donde se define la constante DB_SERVER)
 require_once "config.php";
@@ -26,6 +26,10 @@ $route = get_current_route();
 switch ($route) {
     case '':
     case 'index':
+        // Inicia la sesión solo si no está ya iniciada
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         // Si el usuario ya está logueado, redirige a la página de bienvenida
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
             header("Location: welcome.php");
@@ -35,10 +39,18 @@ switch ($route) {
         include "login.php";
         break;
     case 'register':
+        // Inicia la sesión solo si no está ya iniciada
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         // Incluye el archivo de registro
         include "register.php";
         break;
     case 'welcome':
+        // Inicia la sesión solo si no está ya iniciada
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         // Incluye el archivo de bienvenida
         include "welcome.php";
         break;
